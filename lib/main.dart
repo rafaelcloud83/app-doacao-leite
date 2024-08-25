@@ -1,5 +1,8 @@
-import 'package:doacao_leite/screens/login_screen.dart';
+import 'package:doacao_leite/provider/auth/auth_provider.dart';
+import 'package:doacao_leite/screens/splash/splash_screen.dart';
+import 'package:doacao_leite/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,14 +13,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Doa Leite',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellowAccent),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Doa Leite',
+        theme: ThemeData(
+          useMaterial3: true,
+          primaryColor: primaryColor,
+        ),
+        home: const SplashScreen(),
+        //home: const LoginScreen(),
+        //home: const RegisterScreen(),
       ),
-      home: const LoginScreen(),
     );
   }
 }
