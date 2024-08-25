@@ -116,10 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ctx: context);
                                 } else {
                                   auth.loginUser(
+                                    context: context,
                                     email: _emailController.text.trim(),
-                                    password: _passwordController.text
-                                        .trim()
-                                        .toString(),
+                                    password: _passwordController.text.trim(),
                                   );
                                 }
                               },
@@ -150,94 +149,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-/*   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primaryColor,
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 48),
-                    Text(
-                      'LOGIN',
-                      style: GoogleFonts.ubuntu(
-                        textStyle: const TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset("imagens/LeiteLogo.png"),
-                          const SizedBox(height: 16),
-                          TextField(
-                            keyboardType: TextInputType.emailAddress,
-                            controller: _emailController,
-                            decoration: const InputDecoration(
-                              hintText: "Email",
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          TextField(
-                            obscureText: true,
-                            keyboardType: TextInputType.number,
-                            controller: _passwordController,
-                            decoration: const InputDecoration(
-                              hintText: "Senha",
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 64,
-                                vertical: 16,
-                              ),
-                            ),
-                            onPressed: () {
-                              //TODO: Implementar login
-                            },
-                            child: const Text("Entrar"),
-                          ),
-                          const SizedBox(height: 20),
-                          TextButton(
-                            onPressed: () {
-                              //TODO: ir para tela de cadastro
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RegisterScreen()),
-                              );
-                            },
-                            child: const Text("Não tem cadastro? Clique aqui"),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
- */
