@@ -114,7 +114,6 @@ class AuthenticationProvider extends ChangeNotifier {
         _isLoading = false;
         _resMessage = 'success'; //retorna para o login_screen
         notifyListeners();
-        PageNavigator(ctx: context).nextPageOnly(page: const LoginScreen());
         //debugPrint('if -> $responseBody');
       } else {
         _isLoading = false;

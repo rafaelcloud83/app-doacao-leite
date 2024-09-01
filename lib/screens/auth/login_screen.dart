@@ -100,10 +100,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                   }
                                   //limpa mensagem de autenticação
-                                  auth.clear();
+                                  //auth.clear();
                                 }
+                                auth.clear();
                               },
                             );
+                            //auth.clear();
                             return customButton(
                               text: "Entrar",
                               tap: () {

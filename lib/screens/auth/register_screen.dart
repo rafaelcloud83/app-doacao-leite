@@ -1,5 +1,7 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
+import 'package:doacao_leite/screens/auth/login_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
+import 'package:doacao_leite/utils/routers.dart';
 import 'package:doacao_leite/utils/snack_message.dart';
 import 'package:doacao_leite/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -168,6 +170,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     message: 'Cadastro realizado com sucesso',
                                     ctx: context,
                                   );
+                                  PageNavigator(ctx: context)
+                                      .nextPageOnly(page: const LoginScreen());
                                 } else {
                                   //se for erro
                                   errorMessage(
@@ -176,10 +180,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   );
                                 }
                                 //limpa mensagem de autenticação
-                                auth.clear();
+                                //auth.clear();
                               }
+                              auth.clear();
                             },
                           );
+                          //auth.clear();
                           return customButton(
                             text: "Cadastrar",
                             tap: () {
