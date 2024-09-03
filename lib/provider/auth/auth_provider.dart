@@ -1,9 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:doacao_leite/models/user_model.dart';
-import 'package:doacao_leite/screens/auth/login_screen.dart';
+import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/utils/constants.dart';
-import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -54,6 +54,16 @@ class AuthenticationProvider extends ChangeNotifier {
         _resMessage = 'success'; //retorna para o login_screen
         notifyListeners();
         //debugPrint('if -> $responseBody');
+
+        // Converte a string JSON em um mapa
+        Map<String, dynamic> bodyMap = jsonDecode(response.body);
+        // Acessa os valores do token e userId
+        String token = bodyMap['token'];
+        String userId = bodyMap['userId'];
+        //debugPrint('token -> $token');
+        //debugPrint('userId -> $userId');
+        StorageProvider().saveToken(token);
+        StorageProvider().saveUserId(userId);
       } else {
         _isLoading = false;
         _resMessage = 'Credenciais inválidas';

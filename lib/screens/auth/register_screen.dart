@@ -34,6 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _addressController.clear();
     _passwordController.clear();
     _passwordConfirmController.clear();
+    _selectedRadio = '';
     super.dispose();
   }
 
@@ -46,7 +47,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           SliverToBoxAdapter(
             child: Container(
               margin: const EdgeInsets.only(top: 32, left: 8, right: 8),
-              //color: white,
               padding: const EdgeInsets.only(left: 8, right: 8),
               child: Center(
                 child: Column(
@@ -63,7 +63,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     Container(
                       padding: const EdgeInsets.all(16),
-                      //padding: const EdgeInsets.only(left: 16, right: 16),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16),
@@ -179,13 +178,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ctx: context,
                                   );
                                 }
-                                //limpa mensagem de autenticação
-                                //auth.clear();
                               }
-                              auth.clear();
+                              auth.clear(); //limpa mensagem de autenticação
                             },
                           );
-                          //auth.clear();
                           return customButton(
                             text: "Cadastrar",
                             tap: () {

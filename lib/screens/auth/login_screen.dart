@@ -1,5 +1,6 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
 import 'package:doacao_leite/screens/auth/register_screen.dart';
+import 'package:doacao_leite/screens/home/home_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:doacao_leite/utils/snack_message.dart';
@@ -81,7 +82,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           Consumer<AuthenticationProvider>(
                               builder: (context, auth, child) {
                             WidgetsBinding.instance.addPostFrameCallback(
-                              //WidgetsBinding.instance!.addPostFrameCallback(
                               (_) {
                                 //verificação de mensagem do auth_provider
                                 if (auth.resMessage != '') {
@@ -91,7 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       message: 'Login realizado com sucesso',
                                       ctx: context,
                                     );
-                                    //TODO: redirecionar para tela Home do usuário
+                                    PageNavigator(ctx: context)
+                                        .nextPageOnly(page: const HomeScreen());
                                   } else {
                                     //se for erro
                                     errorMessage(
@@ -99,13 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ctx: context,
                                     );
                                   }
-                                  //limpa mensagem de autenticação
-                                  //auth.clear();
                                 }
-                                auth.clear();
+                                auth.clear(); //limpa mensagem de autenticação
                               },
                             );
-                            //auth.clear();
                             return customButton(
                               text: "Entrar",
                               tap: () {

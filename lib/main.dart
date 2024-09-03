@@ -1,4 +1,5 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
+import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/splash/splash_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
+        ChangeNotifierProvider(create: (_) => StorageProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -25,8 +27,6 @@ class MyApp extends StatelessWidget {
           primaryColor: primaryColor,
         ),
         home: const SplashScreen(),
-        //home: const LoginScreen(),
-        //home: const RegisterScreen(),
       ),
     );
   }

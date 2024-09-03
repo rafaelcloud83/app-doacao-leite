@@ -17,7 +17,7 @@ Widget customButton(
           borderRadius: BorderRadius.circular(8)),
       width: MediaQuery.of(context!).size.width,
       child: Text(
-        status == false ? text! : 'Please wait...',
+        status == false ? text! : 'Aguarde...',
         style:
             TextStyle(color: black, fontSize: 18, fontWeight: FontWeight.bold),
       ),

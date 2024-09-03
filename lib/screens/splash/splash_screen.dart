@@ -1,4 +1,6 @@
+import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
+import 'package:doacao_leite/screens/home/home_screen.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +42,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigate() {
     Future.delayed(const Duration(seconds: 3), () {
-      PageNavigator(ctx: context).nextPageOnly(page: const LoginScreen());
+      StorageProvider().getToken().then((value) {
+        if (value == '') {
+          PageNavigator(ctx: context).nextPageOnly(page: const LoginScreen());
+        } else {
+          PageNavigator(ctx: context).nextPageOnly(page: const HomeScreen());
+        }
+      });
     });
   }
 }
