@@ -8,11 +8,13 @@ class OrderDetailsScreen extends StatefulWidget {
     this.id,
     this.productName,
     this.estimatedPrice,
+    this.userId,
   }) : super(key: key);
 
   final String? id;
   final String? productName;
   final String? estimatedPrice;
+  final String? userId;
 
   @override
   State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
@@ -21,11 +23,13 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   final TextEditingController _productName = TextEditingController();
   final TextEditingController _estimatedPrice = TextEditingController();
+  final TextEditingController _userId = TextEditingController();
 
   @override
   void dispose() {
     _productName.dispose();
     _estimatedPrice.dispose();
+    _userId.dispose();
     super.dispose();
   }
 
@@ -35,11 +39,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     setState(() {
       _productName.text = widget.productName!;
       _estimatedPrice.text = widget.estimatedPrice!;
+      _userId.text = widget.userId!;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    String userIdLogged = widget.userId!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -52,6 +58,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
+                  Text('Id do Recebedor: $userIdLogged'),
+                  /* TextField(
+                    controller: _userId,
+                    decoration: const InputDecoration(
+                      hintText: "Id do Usuário",
+                    ),
+                  ), */
+                  const SizedBox(height: 16),
                   TextField(
                     controller: _productName,
                     decoration: const InputDecoration(

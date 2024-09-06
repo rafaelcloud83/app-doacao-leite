@@ -8,12 +8,14 @@ class OrderField extends StatefulWidget {
     this.id,
     this.productName,
     this.estimatedPrice,
+    this.userId,
     //this.initial,
   }) : super(key: key);
 
   final String? id;
   final String? productName;
   final String? estimatedPrice;
+  final String? userId;
   //final String? initial;
 
   @override
@@ -30,6 +32,7 @@ class _OrderFieldState extends State<OrderField> {
           id: widget.id,
           productName: widget.productName,
           estimatedPrice: widget.estimatedPrice,
+          userId: widget.userId,
         ));
       },
       contentPadding: const EdgeInsets.all(0),
