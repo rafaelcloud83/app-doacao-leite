@@ -23,9 +23,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Doa Leite',
         theme: ThemeData(
-          useMaterial3: true,
-          primaryColor: primaryColor,
-        ),
+            useMaterial3: true,
+            primaryColor: primaryColor,
+            floatingActionButtonTheme: FloatingActionButtonThemeData(
+              backgroundColor: primaryColor,
+            )),
         home: const SplashScreen(),
       ),
     );

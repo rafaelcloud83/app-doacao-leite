@@ -92,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const SizedBox(height: 8),
                         TextField(
-                          maxLines: 2,
+                          //maxLines: 2,
                           controller: _addressController,
                           decoration: const InputDecoration(
                             hintText: "Endereço",

@@ -32,7 +32,7 @@ class _HomeDonorScreenState extends State<HomeDonorScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: Text('Doador $donorName' ?? 'Doador'),
+        title: Text('Doador $donorName'),
         actions: [
           IconButton(
             onPressed: () {
