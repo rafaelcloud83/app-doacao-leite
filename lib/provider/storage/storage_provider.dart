@@ -62,7 +62,7 @@ class StorageProvider extends ChangeNotifier {
     }
   }
 
-  Future<String> getUserName() async {
+  /* Future<String> getUserName() async {
     SharedPreferences value = await _pref;
     if (value.containsKey('userName')) {
       String data = value.getString('userName')!;
@@ -74,6 +74,11 @@ class StorageProvider extends ChangeNotifier {
       notifyListeners();
       return '';
     }
+  } */
+
+  Future<String?> getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('userName');
   }
 
   Future<String> getUserRole() async {

@@ -12,12 +12,27 @@ class HomeDonorScreen extends StatefulWidget {
 }
 
 class _HomeDonorScreenState extends State<HomeDonorScreen> {
+  String? donorName;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDonorName();
+  }
+
+  Future<void> _loadDonorName() async {
+    String? name = await StorageProvider().getUserName();
+    setState(() {
+      donorName = name;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('nome do doador'),
+        title: Text('Doador $donorName' ?? 'Doador'),
         actions: [
           IconButton(
             onPressed: () {

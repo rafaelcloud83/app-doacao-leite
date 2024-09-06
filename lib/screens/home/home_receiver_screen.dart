@@ -12,12 +12,27 @@ class HomeReceiverScreen extends StatefulWidget {
 }
 
 class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
+  String? receiverName;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadReceiverName();
+  }
+
+  Future<void> _loadReceiverName() async {
+    String? name = await StorageProvider().getUserName();
+    setState(() {
+      receiverName = name;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('nome do recebedor'),
+        title: Text('Recebedor $receiverName' ?? 'Recebedor'),
         actions: [
           IconButton(
             onPressed: () {

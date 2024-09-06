@@ -4,10 +4,8 @@ import 'dart:io';
 import 'package:doacao_leite/models/user_model.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/utils/constants.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   final requestBaseUrl = AppUrl.baseURL;
