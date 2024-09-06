@@ -7,6 +7,7 @@ import 'package:doacao_leite/utils/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   final requestBaseUrl = AppUrl.baseURL;
@@ -60,10 +61,14 @@ class AuthenticationProvider extends ChangeNotifier {
         // Acessa os valores do token e userId
         String token = bodyMap['token'];
         String userId = bodyMap['userId'];
+        String userName = bodyMap['userName'];
+        String userRole = bodyMap['userRole'];
         //debugPrint('token -> $token');
         //debugPrint('userId -> $userId');
         StorageProvider().saveToken(token);
         StorageProvider().saveUserId(userId);
+        StorageProvider().saveUserName(userName);
+        StorageProvider().saveUserRole(userRole);
       } else {
         _isLoading = false;
         _resMessage = 'Credenciais inválidas';

@@ -1,6 +1,8 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
+import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/register_screen.dart';
-import 'package:doacao_leite/screens/home/home_screen.dart';
+import 'package:doacao_leite/screens/home/home_donor_screen.dart';
+import 'package:doacao_leite/screens/home/home_receiver_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:doacao_leite/utils/snack_message.dart';
@@ -91,8 +93,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                       message: 'Login realizado com sucesso',
                                       ctx: context,
                                     );
-                                    PageNavigator(ctx: context)
-                                        .nextPageOnly(page: const HomeScreen());
+
+                                    StorageProvider().getUserRole().then(
+                                      (value) {
+                                        if (value == 'DOADOR') {
+                                          PageNavigator(ctx: context)
+                                              .nextPageOnly(
+                                                  page:
+                                                      const HomeDonorScreen());
+                                        } else {
+                                          PageNavigator(ctx: context)
+                                              .nextPageOnly(
+                                                  page:
+                                                      const HomeReceiverScreen());
+                                        }
+                                      },
+                                    );
                                   } else {
                                     //se for erro
                                     errorMessage(

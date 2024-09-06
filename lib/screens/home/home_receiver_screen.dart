@@ -4,20 +4,20 @@ import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeReceiverScreen extends StatefulWidget {
+  const HomeReceiverScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeReceiverScreen> createState() => _HomeReceiverScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('nome do usuário'),
+        title: const Text('nome do recebedor'),
         actions: [
           IconButton(
             onPressed: () {
