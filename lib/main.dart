@@ -5,9 +5,11 @@ import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/splash/splash_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  Intl.defaultLocale = 'pt_BR';
   runApp(const MyApp());
 }
 

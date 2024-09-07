@@ -23,13 +23,11 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   final TextEditingController _productName = TextEditingController();
   final TextEditingController _estimatedPrice = TextEditingController();
-  final TextEditingController _userId = TextEditingController();
 
   @override
   void dispose() {
     _productName.dispose();
     _estimatedPrice.dispose();
-    _userId.dispose();
     super.dispose();
   }
 
@@ -39,13 +37,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     setState(() {
       _productName.text = widget.productName!;
       _estimatedPrice.text = widget.estimatedPrice!;
-      _userId.text = widget.userId!;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    String userIdLogged = widget.userId!;
+    //String userIdLogged = widget.userId!;
+    String idOrder = widget.id!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -58,13 +56,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  Text('Id do Recebedor: $userIdLogged'),
-                  /* TextField(
-                    controller: _userId,
-                    decoration: const InputDecoration(
-                      hintText: "Id do Usuário",
-                    ),
-                  ), */
+                  //Text('Id do Recebedor: $userIdLogged'),
+                  const SizedBox(height: 8),
+                  Text('Pedido número: $idOrder'),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _productName,
@@ -87,7 +81,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       //TODO: atualizar o pedido
                     },
                     context: context,
-                    text: 'Salvar pedido',
+                    text: 'Atualizar pedido',
                   )
                 ],
               ),

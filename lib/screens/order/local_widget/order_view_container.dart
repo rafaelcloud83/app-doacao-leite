@@ -9,14 +9,14 @@ class OrderField extends StatefulWidget {
     this.productName,
     this.estimatedPrice,
     this.userId,
-    //this.initial,
+    this.status,
   }) : super(key: key);
 
   final String? id;
   final String? productName;
   final String? estimatedPrice;
   final String? userId;
-  //final String? initial;
+  final String? status;
 
   @override
   _OrderFieldState createState() => _OrderFieldState();
@@ -40,9 +40,20 @@ class _OrderFieldState extends State<OrderField> {
         widget.productName!,
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: Text(
-        widget.estimatedPrice!,
-        overflow: TextOverflow.ellipsis,
+      subtitle: Row(
+        children: [
+          const Text('R\$ '),
+          Text(
+            widget.estimatedPrice!,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const Text(' -- '),
+          Text(
+            style: const TextStyle(fontWeight: FontWeight.bold),
+            widget.status!,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
       leading: Text(
         widget.id!,

@@ -22,22 +22,17 @@ class CreateOrderScreen extends StatefulWidget {
 class _CreateOrderScreenState extends State<CreateOrderScreen> {
   final TextEditingController _productName = TextEditingController();
   final TextEditingController _estimatedPrice = TextEditingController();
-  final TextEditingController _userId = TextEditingController();
 
   @override
   void dispose() {
     _productName.dispose();
     _estimatedPrice.dispose();
-    _userId.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    setState(() {
-      _userId.text = widget.userId!;
-    });
   }
 
   @override
@@ -56,12 +51,6 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
               child: Column(
                 children: [
                   Text('Id do Recebedor: $userIdLogged'),
-                  /* TextField(
-                    controller: _userId,
-                    decoration: const InputDecoration(
-                      hintText: "Id do Usuário",
-                    ),
-                  ), */
                   const SizedBox(height: 16),
                   TextField(
                     controller: _productName,
