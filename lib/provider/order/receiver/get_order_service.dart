@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:doacao_leite/models/order_response_model.dart';
+import 'package:doacao_leite/models/order/receiver/order_response_model.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/utils/constants.dart';
 import 'package:flutter/material.dart';

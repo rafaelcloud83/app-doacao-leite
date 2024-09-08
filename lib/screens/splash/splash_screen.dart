@@ -1,7 +1,7 @@
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
-import 'package:doacao_leite/screens/home/home_donor_screen.dart';
-import 'package:doacao_leite/screens/home/home_receiver_screen.dart';
+import 'package:doacao_leite/screens/order/donor/home_donor_screen.dart';
+import 'package:doacao_leite/screens/order/receiver/home_receiver_screen.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

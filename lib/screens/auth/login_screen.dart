@@ -1,8 +1,8 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/register_screen.dart';
-import 'package:doacao_leite/screens/home/home_donor_screen.dart';
-import 'package:doacao_leite/screens/home/home_receiver_screen.dart';
+import 'package:doacao_leite/screens/order/donor/home_donor_screen.dart';
+import 'package:doacao_leite/screens/order/receiver/home_receiver_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:doacao_leite/utils/snack_message.dart';
@@ -147,10 +147,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextButton(
                             onPressed: () {
                               PageNavigator(ctx: context)
-                                  .nextPageOnly(page: const RegisterScreen());
+                                  .nextPage(page: const RegisterScreen());
                             },
-                            child: const Text("Não tem cadastro? Clique aqui",
-                                style: TextStyle(fontSize: 16)),
+                            child: const Text(
+                              "Não tem cadastro? Clique aqui",
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black),
+                            ),
                           ),
                         ],
                       ),

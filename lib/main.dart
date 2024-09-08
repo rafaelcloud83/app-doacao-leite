@@ -1,5 +1,5 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
-import 'package:doacao_leite/provider/order/add_order_provider.dart';
+import 'package:doacao_leite/provider/order/receiver/add_order_provider.dart';
 import 'package:doacao_leite/provider/order/update_order_provider.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/splash/splash_screen.dart';

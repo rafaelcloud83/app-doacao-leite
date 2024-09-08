@@ -1,6 +1,7 @@
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   const OrderDetailsScreen({
@@ -47,7 +48,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('Detalhes do Pedido'),
+        title: const Text(
+          'Detalhes da Doação',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
       body: CustomScrollView(
         slivers: [
@@ -58,15 +62,30 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 children: [
                   //Text('Id do Recebedor: $userIdLogged'),
                   const SizedBox(height: 8),
-                  Text('Pedido número: $idOrder'),
-                  const SizedBox(height: 16),
+                  Text(
+                    'Doação número: $idOrder',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(height: 24),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Nome do Produto',
+                    ),
+                  ),
                   TextField(
                     controller: _productName,
                     decoration: const InputDecoration(
                       hintText: "Nome do Produto",
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Preço estimado R\$',
+                    ),
+                  ),
                   TextField(
                     keyboardType: TextInputType.number,
                     controller: _estimatedPrice,
@@ -74,14 +93,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       hintText: "Preço estimado",
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   customButton(
                     status: false,
                     tap: () {
                       //TODO: atualizar o pedido
                     },
                     context: context,
-                    text: 'Atualizar pedido',
+                    text: 'Atualizar doação',
                   )
                 ],
               ),

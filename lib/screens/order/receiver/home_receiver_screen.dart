@@ -1,9 +1,9 @@
-import 'package:doacao_leite/models/order_response_model.dart';
-import 'package:doacao_leite/provider/order/get_order_service.dart';
+import 'package:doacao_leite/models/order/receiver/order_response_model.dart';
+import 'package:doacao_leite/provider/order/receiver/get_order_service.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
-import 'package:doacao_leite/screens/order/add_order_screen.dart';
-import 'package:doacao_leite/screens/order/local_widget/order_view_container.dart';
+import 'package:doacao_leite/screens/order/receiver/add_order_screen.dart';
+import 'package:doacao_leite/screens/order/receiver/order_view_container.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,6 @@ class HomeReceiverScreen extends StatefulWidget {
 class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
   String? receiverName;
   String? receiverId;
-  //List order = [];
 
   @override
   void initState() {
@@ -38,7 +37,6 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
   Future<void> _loadReceiverId() async {
     String? id = await StorageProvider().getUserId();
     receiverId = id;
-    //debugPrint('receiverId -> $receiverId');
   }
 
   @override
@@ -46,8 +44,8 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        //title: Text('Recebedor $receiverName - $receiverId'),
-        title: Text('Recebedor $receiverName'),
+        title: Text('OLÁ $receiverName',
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         actions: [
           IconButton(
             onPressed: () {
@@ -74,28 +72,32 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
             debugPrint('Snapshot: $snapshot');
             if (snapshot.hasError) {
               return const Center(
-                child: Text('Ocorreu um erro'),
+                child: Text(
+                  'Ocorreu um erro',
+                  style: TextStyle(fontSize: 20),
+                ),
               );
             } else if (snapshot.hasData) {
-              if (snapshot.data!.orders == null) {
+              if (snapshot.data!.orders == null ||
+                  snapshot.data!.orders!.isEmpty) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Nenhum pedido',
+                        'Nenhuma doação encontrada',
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 48),
                       GestureDetector(
                         onTap: () {
                           PageNavigator(ctx: context).nextPage(
                               page: CreateOrderScreen(userId: receiverId));
                         },
                         child: Text(
-                          'Criar um pedido',
-                          style: TextStyle(fontSize: 18, color: black),
+                          'Criar uma doação? Clique aqui',
+                          style: TextStyle(fontSize: 20, color: black),
                         ),
                       ),
                     ],
@@ -108,7 +110,6 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
                     (index) {
                       final data = snapshot.data!.orders![index];
                       return OrderField(
-                        //id: "${index + 1}",
                         id: '${data.id}',
                         productName: data.productName,
                         estimatedPrice: '${data.estimatedPrice}',
@@ -121,7 +122,9 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
               }
             } else {
               return const Center(
-                child: CircularProgressIndicator(color: Color(0XffFFFF00)),
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                ),
               );
             }
           },

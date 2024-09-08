@@ -52,14 +52,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'CADASTRE-SE',
-                      style: GoogleFonts.ubuntu(
-                        textStyle: const TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.arrow_back),
                         ),
-                      ),
+                        Text(
+                          'CADASTRE-SE',
+                          style: GoogleFonts.ubuntu(
+                            textStyle: const TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     Container(
                       padding: const EdgeInsets.all(16),

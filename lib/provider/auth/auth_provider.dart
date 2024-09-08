@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:doacao_leite/models/user_model.dart';
+import 'package:doacao_leite/models/user/user_model.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/utils/constants.dart';
 import 'package:flutter/material.dart';

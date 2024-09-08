@@ -1,5 +1,5 @@
-import 'package:doacao_leite/provider/order/add_order_provider.dart';
-import 'package:doacao_leite/screens/home/home_receiver_screen.dart';
+import 'package:doacao_leite/provider/order/receiver/add_order_provider.dart';
+import 'package:doacao_leite/screens/order/receiver/home_receiver_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:doacao_leite/utils/snack_message.dart';
@@ -41,7 +41,10 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('Criar Pedido'),
+        title: const Text(
+          'Criar Pedido de Doação',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
       body: CustomScrollView(
         slivers: [
@@ -50,15 +53,18 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  Text('Id do Recebedor: $userIdLogged'),
-                  const SizedBox(height: 16),
+                  Text(
+                    'Id do Recebedor: $userIdLogged',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(height: 24),
                   TextField(
                     controller: _productName,
                     decoration: const InputDecoration(
                       hintText: "Nome do Produto",
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   TextField(
                     keyboardType: TextInputType.number,
                     controller: _estimatedPrice,
@@ -66,7 +72,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                       hintText: "Preço estimado",
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   Consumer<AddOrderProvider>(
                       builder: (context, addOrder, child) {
                     WidgetsBinding.instance.addPostFrameCallback(
