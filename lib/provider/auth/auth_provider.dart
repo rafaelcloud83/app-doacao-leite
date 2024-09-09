@@ -55,17 +55,18 @@ class AuthenticationProvider extends ChangeNotifier {
         //debugPrint('if -> $responseBody');
 
         // Converte a string JSON em um mapa
-        Map<String, dynamic> bodyMap = jsonDecode(response.body);
+        Map<String, dynamic> map = jsonDecode(response.body);
         // Acessa os valores do token e userId
-        String token = bodyMap['token'];
-        String userId = bodyMap['userId'];
-        String userName = bodyMap['userName'];
-        String userRole = bodyMap['userRole'];
+        String token = map['token'];
+        String userId = map['userId'];
+        String userName = map['userName'];
+        String userRole = map['userRole'];
         //debugPrint('token -> $token');
         //debugPrint('userId -> $userId');
         StorageProvider().saveToken(token);
         StorageProvider().saveUserId(userId);
-        StorageProvider().saveUserName(userName);
+        StorageProvider().saveUserName(
+            utf8.decode(latin1.encode(userName))); //converter para formato ptbr
         StorageProvider().saveUserRole(userRole);
       } else {
         _isLoading = false;
@@ -136,7 +137,7 @@ class AuthenticationProvider extends ChangeNotifier {
       }
     } on SocketException catch (_) {
       _isLoading = false;
-      _resMessage = 'Sem conexão com internet';
+      _resMessage = 'Sem conexão com internet/servidor';
       notifyListeners();
       debugPrint('socket -> $_resMessage');
     } catch (e) {
@@ -152,3 +153,45 @@ class AuthenticationProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+//loginUser
+//request
+/* {
+	"email" : "maria@email.com",
+	"password" : "123"
+} */
+
+//response
+/* {
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkb2FjYW8tbGVpdGUiLCJzdWIiOiJtYXJpYUBlbWFpbC5jb20iLCJleHAiOjE3MjU5NjI1MDh9.i9QIAC_V8RdGr6E7hevGa95o4c7QQ-OrfCGlO8VrFSo",
+	"userId": "4",
+	"userName": "Maria",
+	"userRole": "RECEBEDOR"
+} */
+
+//------------------------------------------------------------------------------
+
+//registerUser
+//request
+/* {
+	"name" : "Ana",
+	"email" : "ana@email.com",
+	"password" : "123",
+	"phone": "19981821234",
+	"address": "rua braga",
+	"role" : "RECEBEDOR"
+} */
+
+//response
+/* {
+	"id": 9,
+	"name": "Ana",
+	"email": "ana@email.com",
+	"password": "$2a$10$wkrEqAx2hcwW7U00cFaTNujrrUZTBBW22vhXbcQhRKMw5BkhaUWrO",
+	"phone": "19981821234",
+	"address": "rua braga",
+	"active": true,
+	"role": "RECEBEDOR",
+	"createdAt": "2024-09-09T22:13:32.781700086Z",
+	"updatedAt": null
+} */

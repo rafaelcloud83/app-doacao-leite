@@ -143,7 +143,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onChanged: (String? value) {
                                 setState(() {
                                   _selectedRadio = value;
-                                  debugPrint(value);
+                                  //debugPrint(value);
                                 });
                               },
                             ),
@@ -156,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onChanged: (String? value) {
                                 setState(() {
                                   _selectedRadio = value;
-                                  debugPrint(value);
+                                  //debugPrint(value);
                                 });
                               },
                             ),

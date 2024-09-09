@@ -10,14 +10,16 @@ class OrderField extends StatefulWidget {
     this.id,
     this.productName,
     this.estimatedPrice,
-    this.userId,
+    this.receiverId,
+    this.donorId,
     this.status,
   }) : super(key: key);
 
   final String? id;
   final String? productName;
   final String? estimatedPrice;
-  final String? userId;
+  final String? receiverId;
+  final String? donorId;
   final String? status;
 
   @override
@@ -30,28 +32,34 @@ class _OrderFieldState extends State<OrderField> {
     return ListTile(
       onTap: () {
         if (widget.status == 'AGUARDANDO') {
-          //pagina para alterar a doação
+          //pagina para alterar a doação pelo recebedor
           PageNavigator(ctx: context).nextPage(
-              page: OrderDetailsScreen(
-            id: widget.id,
-            productName: widget.productName,
-            estimatedPrice: widget.estimatedPrice,
-            userId: widget.userId,
-          ));
+            page: OrderDetailsScreen(
+              orderId: widget.id,
+              productName: widget.productName,
+              estimatedPrice: widget.estimatedPrice,
+              receiverId: widget.receiverId,
+              donorId: widget.donorId,
+              status: widget.status,
+            ),
+          );
         } else if (widget.status == 'DOADO') {
           // pagina de confirmação que recebeu a doação
           PageNavigator(ctx: context).nextPage(
-              page: OrderStatusDetailScreen(
-            id: widget.id,
-            productName: widget.productName,
-            estimatedPrice: widget.estimatedPrice,
-            userId: widget.userId,
-            status: widget.status,
-          ));
+            page: OrderStatusDetailScreen(
+              orderId: widget.id,
+              productName: widget.productName,
+              estimatedPrice: widget.estimatedPrice,
+              receiverId: widget.receiverId,
+              donorId: widget.donorId,
+              status: widget.status,
+            ),
+          );
         } else if (widget.status == 'CONCLUIDO') {
           errorMessage(
-              message: 'A doação já foi concluída e não pode ser alterada',
-              ctx: context);
+            message: 'A doação já foi concluída e não pode ser alterada',
+            ctx: context,
+          );
           return;
         }
       },
@@ -62,24 +70,31 @@ class _OrderFieldState extends State<OrderField> {
       ),
       subtitle: Row(
         children: [
-          const Text('R\$ '),
+          const Text(
+            'R\$ ',
+            overflow: TextOverflow.ellipsis,
+          ),
           Text(
             widget.estimatedPrice!,
             overflow: TextOverflow.ellipsis,
           ),
-          const Text(' -- Status: '),
+          const Text(
+            ' -- Status: ',
+            overflow: TextOverflow.ellipsis,
+          ),
           Text(
-            style: const TextStyle(fontWeight: FontWeight.bold),
             widget.status!,
+            style: const TextStyle(fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
+      minLeadingWidth: 28,
       leading: Text(
         widget.id!,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(
-          fontSize: 15,
+          fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
       ),

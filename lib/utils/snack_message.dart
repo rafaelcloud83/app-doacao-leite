@@ -9,6 +9,7 @@ void successMessage({String? message, BuildContext? ctx}) {
         style: TextStyle(color: white),
       ),
       backgroundColor: greenAlert,
+      duration: const Duration(milliseconds: 1300),
     ),
   );
 }
@@ -21,6 +22,7 @@ void errorMessage({String? message, BuildContext? ctx}) {
         style: TextStyle(color: white),
       ),
       backgroundColor: redAlert,
+      duration: const Duration(milliseconds: 2500),
     ),
   );
 }

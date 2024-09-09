@@ -1,10 +1,10 @@
-import 'package:doacao_leite/models/order/receiver/order_create_model.dart';
+import 'package:doacao_leite/models/order/receiver/order_update_model.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class AddOrderProvider extends ChangeNotifier {
+class UpdateOrderProvider extends ChangeNotifier {
   final requestBaseUrl = AppUrl.baseURL;
 
   bool _status = false;
@@ -13,35 +13,43 @@ class AddOrderProvider extends ChangeNotifier {
   bool get status => _status;
   String get response => _response;
 
-  void addOrder({
+  void updateOrder({
+    required int orderId,
     required int receiverId,
+    required int donorId,
     required String productName,
     required String estimatedPrice,
+    required String statusOrder,
     BuildContext? context,
   }) async {
     final token = await StorageProvider().getToken();
     //debugPrint('token -> $token');
-    //debugPrint('userId -> $receiverId');
+
     _status = true;
     notifyListeners();
 
-    String url = '$requestBaseUrl/orders/create';
+    String url = '$requestBaseUrl/orders/update';
     //debugPrint('URL: $url');
 
-    OrderCreateModel order = OrderCreateModel(
+    OrderUpdateModel order = OrderUpdateModel(
+      id: orderId,
       productName: productName,
       estimatedPrice: estimatedPrice,
+      status: statusOrder,
       receiver: Receiver(
         id: receiverId,
+      ),
+      donor: Donor(
+        id: donorId,
       ),
     );
     //debugPrint('Order: $order');
 
-    http.Response response = await http.post(
+    http.Response response = await http.put(
       Uri.parse(url),
       body: order.toJson(),
       headers: {
-        "Authorization": "Bearer $token",
+        'Authorization': 'Bearer $token',
         "Content-type": "application/json; charset=UTF-8",
       },
     );
@@ -49,7 +57,7 @@ class AddOrderProvider extends ChangeNotifier {
     //debugPrint('Response status: ${response.statusCode}');
 
     //final res = response.body;
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       //debugPrint('Response: $res');
       _status = false;
       _response = 'success';
@@ -57,7 +65,7 @@ class AddOrderProvider extends ChangeNotifier {
     } else {
       //debugPrint('Response: $res');
       _status = false;
-      _response = 'Credenciais inválidas';
+      _response = 'Erro ao atualizar a doação';
       notifyListeners();
     }
   }
@@ -68,12 +76,17 @@ class AddOrderProvider extends ChangeNotifier {
   }
 }
 
-//request para salvar
-/* {
-	"productName" : "leite nan",
-	"estimatedPrice": "70,90",
+//request para atualizar
+/*{
+	"id" : 1,
+	"productName": "Ninho Fases 1 - Fórmula Infantil, 1.2 kg",
+	"estimatedPrice": "74,99",
+	"status" : "DOADO",
 	"receiver" : {
-		"id" : 4
+		"id" : 2
+	},
+	"donor" : {
+		"id" : 5
 	}
 } */
 
@@ -81,21 +94,21 @@ class AddOrderProvider extends ChangeNotifier {
 //response
 /* {
 	"id": 10,
-	"productName": "leite nan",
+	"productName": "leite nan alterado",
 	"estimatedPrice": "70,90",
 	"status": "AGUARDANDO",
-	"createdAt": "2024-09-09T22:02:34.101401876Z",
-	"updatedAt": null,
+	"createdAt": "2024-09-09T22:02:34.101402Z",
+	"updatedAt": "2024-09-09T22:07:12.541113299Z",
 	"receiver": {
 		"id": 4,
-		"name": null,
-		"email": null,
-		"phone": null,
-		"address": null,
-		"password": null,
-		"role": null,
-		"active": null,
-		"createdAt": null,
+		"name": "Maria",
+		"email": "maria@email.com",
+		"phone": "19993958675",
+		"address": "rua dois",
+		"password": "$2a$10$Em.2EoqjaYSuWCmw6U/Msuwa3x4.s87R7e5YtgC9qo1W1hdqC/S..",
+		"role": "RECEBEDOR",
+		"active": true,
+		"createdAt": "2024-09-09T21:46:35.399609Z",
 		"updatedAt": null,
 		"enabled": true,
 		"authorities": [
@@ -103,7 +116,7 @@ class AddOrderProvider extends ChangeNotifier {
 				"authority": "ROLE_RECEBEDOR"
 			}
 		],
-		"username": null,
+		"username": "maria@email.com",
 		"accountNonExpired": true,
 		"accountNonLocked": true,
 		"credentialsNonExpired": true

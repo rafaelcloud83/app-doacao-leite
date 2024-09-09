@@ -24,40 +24,50 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(
-            'DOA LEITE',
-            style: GoogleFonts.oleoScript(
-              textStyle: const TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.normal,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'DOA LEITE',
+              style: GoogleFonts.oleoScript(
+                textStyle: const TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 32),
-          Image.asset("imagens/LeiteLogo150.png"),
-        ]),
+            const SizedBox(height: 32),
+            Image.asset("imagens/LeiteLogo150.png"),
+          ],
+        ),
       ),
     );
   }
 
   void navigate() {
-    Future.delayed(const Duration(seconds: 3), () {
-      StorageProvider().getToken().then((value) {
-        if (value == '') {
-          PageNavigator(ctx: context).nextPageOnly(page: const LoginScreen());
-        } else {
-          StorageProvider().getUserRole().then((value) {
-            if (value == 'DOADOR') {
-              PageNavigator(ctx: context)
-                  .nextPageOnly(page: const HomeDonorScreen());
-            } else {
-              PageNavigator(ctx: context)
-                  .nextPageOnly(page: const HomeReceiverScreen());
-            }
-          });
-        }
-      });
-    });
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        StorageProvider().getToken().then((value) {
+          if (value == '') {
+            PageNavigator(ctx: context).nextPageOnly(
+              page: const LoginScreen(),
+            );
+          } else {
+            StorageProvider().getUserRole().then((value) {
+              if (value == 'DOADOR') {
+                PageNavigator(ctx: context).nextPageOnly(
+                  page: const HomeDonorScreen(),
+                );
+              } else {
+                PageNavigator(ctx: context).nextPageOnly(
+                  page: const HomeReceiverScreen(),
+                );
+              }
+            });
+          }
+        });
+      },
+    );
   }
 }

@@ -99,13 +99,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                         if (value == 'DOADOR') {
                                           PageNavigator(ctx: context)
                                               .nextPageOnly(
-                                                  page:
-                                                      const HomeDonorScreen());
+                                            page: const HomeDonorScreen(),
+                                          );
                                         } else {
                                           PageNavigator(ctx: context)
                                               .nextPageOnly(
-                                                  page:
-                                                      const HomeReceiverScreen());
+                                            page: const HomeReceiverScreen(),
+                                          );
                                         }
                                       },
                                     );
@@ -127,9 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (_emailController.text.isEmpty ||
                                     _passwordController.text.isEmpty) {
                                   errorMessage(
-                                      message:
-                                          'Todos os campos são obrigatórios',
-                                      ctx: context);
+                                    message: 'Todos os campos são obrigatórios',
+                                    ctx: context,
+                                  );
                                 } else {
                                   auth.loginUser(
                                     context: context,
@@ -146,13 +146,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           //botão para cadastrar
                           TextButton(
                             onPressed: () {
-                              PageNavigator(ctx: context)
-                                  .nextPage(page: const RegisterScreen());
+                              PageNavigator(ctx: context).nextPage(
+                                page: const RegisterScreen(),
+                              );
                             },
                             child: const Text(
                               "Não tem cadastro? Clique aqui",
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.black),
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ],

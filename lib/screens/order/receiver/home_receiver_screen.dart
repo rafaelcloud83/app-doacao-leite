@@ -18,6 +18,7 @@ class HomeReceiverScreen extends StatefulWidget {
 class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
   String? receiverName;
   String? receiverId;
+  String? donorId;
 
   @override
   void initState() {
@@ -44,14 +45,20 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: Text('OLÁ $receiverName',
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        title: Text(
+          'OLÁ $receiverName',
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
               StorageProvider().logout();
-              PageNavigator(ctx: context)
-                  .nextPageOnly(page: const LoginScreen());
+              PageNavigator(ctx: context).nextPageOnly(
+                page: const LoginScreen(),
+              );
             },
             icon: const Icon(Icons.logout),
           ),
@@ -59,8 +66,9 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          PageNavigator(ctx: context)
-              .nextPage(page: CreateOrderScreen(userId: receiverId));
+          PageNavigator(ctx: context).nextPage(
+            page: CreateOrderScreen(receiverId: receiverId),
+          );
         },
         child: const Icon(Icons.add),
       ),
@@ -69,12 +77,15 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
         child: FutureBuilder<OrderResponseModel>(
           future: GetUserOrder().getOrder(),
           builder: (context, snapshot) {
-            debugPrint('Snapshot: $snapshot');
+            //debugPrint('Snapshot: $snapshot');
             if (snapshot.hasError) {
               return const Center(
                 child: Text(
                   'Ocorreu um erro',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               );
             } else if (snapshot.hasData) {
@@ -87,17 +98,31 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
                       const Text(
                         'Nenhuma doação encontrada',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      const SizedBox(height: 48),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Criar uma doação?',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
                       GestureDetector(
                         onTap: () {
                           PageNavigator(ctx: context).nextPage(
-                              page: CreateOrderScreen(userId: receiverId));
+                            page: CreateOrderScreen(receiverId: receiverId),
+                          );
                         },
                         child: Text(
-                          'Criar uma doação? Clique aqui',
-                          style: TextStyle(fontSize: 20, color: black),
+                          'Clique aqui',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: black,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],
@@ -113,7 +138,8 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
                         id: '${data.id}',
                         productName: data.productName,
                         estimatedPrice: '${data.estimatedPrice}',
-                        userId: receiverId,
+                        receiverId: receiverId,
+                        donorId: '${data.donor!.id}',
                         status: data.status,
                       );
                     },

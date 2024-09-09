@@ -1,21 +1,29 @@
+import 'package:doacao_leite/provider/order/receiver/update_order_provider.dart';
+import 'package:doacao_leite/screens/order/receiver/home_receiver_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
+import 'package:doacao_leite/utils/routers.dart';
+import 'package:doacao_leite/utils/snack_message.dart';
 import 'package:doacao_leite/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   const OrderDetailsScreen({
     Key? key,
-    this.id,
+    this.orderId,
     this.productName,
     this.estimatedPrice,
-    this.userId,
+    this.receiverId,
+    this.donorId,
+    this.status,
   }) : super(key: key);
 
-  final String? id;
+  final String? orderId;
   final String? productName;
   final String? estimatedPrice;
-  final String? userId;
+  final String? receiverId;
+  final String? donorId;
+  final String? status;
 
   @override
   State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
@@ -43,14 +51,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //String userIdLogged = widget.userId!;
-    String idOrder = widget.id!;
+    String orderId = widget.orderId!;
+    String receiverId = widget.receiverId!;
+    String donorId = widget.donorId!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: const Text(
           'Detalhes da Doação',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: CustomScrollView(
@@ -60,10 +72,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  //Text('Id do Recebedor: $userIdLogged'),
                   const SizedBox(height: 8),
                   Text(
-                    'Doação número: $idOrder',
+                    'Doação número: $orderId',
                     style: const TextStyle(fontSize: 20),
                   ),
                   const SizedBox(height: 24),
@@ -94,14 +105,54 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  customButton(
-                    status: false,
-                    tap: () {
-                      //TODO: atualizar o pedido
-                    },
-                    context: context,
-                    text: 'Atualizar doação',
-                  )
+                  Consumer<UpdateOrderProvider>(
+                      builder: (context, updateOrder, child) {
+                    WidgetsBinding.instance.addPostFrameCallback(
+                      (_) {
+                        if (updateOrder.response != '') {
+                          if (updateOrder.response == 'success') {
+                            successMessage(
+                              message: 'Doação alterada',
+                              ctx: context,
+                            );
+                            PageNavigator(ctx: context).nextPageOnly(
+                              page: const HomeReceiverScreen(),
+                            );
+                          } else {
+                            errorMessage(
+                              message: updateOrder.response,
+                              ctx: context,
+                            );
+                          }
+                        }
+                        updateOrder.clear();
+                      },
+                    );
+                    return customButton(
+                      status: updateOrder.status,
+                      tap: () {
+                        // atualizar o pedido mas manter status AGUARDANDO
+                        if (_productName.text.isEmpty ||
+                            _estimatedPrice.text.isEmpty) {
+                          errorMessage(
+                            message: 'Preencha todos os campos',
+                            ctx: context,
+                          );
+                        } else {
+                          updateOrder.updateOrder(
+                            orderId: int.parse(orderId),
+                            receiverId: int.parse(receiverId),
+                            donorId: int.parse(donorId),
+                            productName: _productName.text.trim(),
+                            estimatedPrice: _estimatedPrice.text.trim(),
+                            statusOrder: 'AGUARDANDO',
+                          );
+                        }
+                      },
+                      context: context,
+                      text: 'Atualizar doação',
+                    );
+                  }),
                 ],
               ),
             ),

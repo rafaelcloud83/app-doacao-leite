@@ -10,10 +10,10 @@ import 'package:provider/provider.dart';
 class CreateOrderScreen extends StatefulWidget {
   const CreateOrderScreen({
     Key? key,
-    this.userId,
+    this.receiverId,
   }) : super(key: key);
 
-  final String? userId;
+  final String? receiverId;
 
   @override
   State<CreateOrderScreen> createState() => _CreateOrderScreenState();
@@ -37,13 +37,16 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String userIdLogged = widget.userId!;
+    String userIdLogged = widget.receiverId!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: const Text(
           'Criar Pedido de Doação',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: CustomScrollView(
@@ -54,7 +57,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
               child: Column(
                 children: [
                   Text(
-                    'Id do Recebedor: $userIdLogged',
+                    'Meu número: $userIdLogged',
                     style: const TextStyle(fontSize: 20),
                   ),
                   const SizedBox(height: 24),
@@ -80,11 +83,12 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                         if (addOrder.response != '') {
                           if (addOrder.response == 'success') {
                             successMessage(
-                              message: 'Pedido criado com sucesso',
+                              message: 'Pedido de doação criado com sucesso',
                               ctx: context,
                             );
-                            PageNavigator(ctx: context)
-                                .nextPageOnly(page: const HomeReceiverScreen());
+                            PageNavigator(ctx: context).nextPageOnly(
+                              page: const HomeReceiverScreen(),
+                            );
                           } else {
                             errorMessage(
                               message: addOrder.response,
@@ -105,7 +109,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                               ctx: context);
                         } else {
                           addOrder.addOrder(
-                            userId: int.parse(userIdLogged),
+                            receiverId: int.parse(userIdLogged),
                             productName: _productName.text.trim(),
                             estimatedPrice: _estimatedPrice.text.trim(),
                           );

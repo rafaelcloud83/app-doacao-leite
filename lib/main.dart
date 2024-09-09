@@ -1,6 +1,6 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
 import 'package:doacao_leite/provider/order/receiver/add_order_provider.dart';
-import 'package:doacao_leite/provider/order/update_order_provider.dart';
+import 'package:doacao_leite/provider/order/receiver/update_order_provider.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/splash/splash_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
@@ -29,11 +29,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Doa Leite',
         theme: ThemeData(
-            useMaterial3: true,
-            primaryColor: primaryColor,
-            floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: primaryColor,
-            )),
+          useMaterial3: true,
+          primaryColor: primaryColor,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: primaryColor,
+          ),
+        ),
         home: const SplashScreen(),
       ),
     );
