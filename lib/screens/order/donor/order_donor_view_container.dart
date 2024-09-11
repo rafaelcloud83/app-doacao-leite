@@ -9,6 +9,9 @@ class OrderDonorField extends StatefulWidget {
     this.productName,
     this.estimatedPrice,
     this.receiverId,
+    this.receiverName,
+    this.receiverPhone,
+    this.receiverAddress,
     this.donorId,
     this.status,
   }) : super(key: key);
@@ -17,6 +20,9 @@ class OrderDonorField extends StatefulWidget {
   final String? productName;
   final String? estimatedPrice;
   final String? receiverId;
+  final String? receiverName;
+  final String? receiverPhone;
+  final String? receiverAddress;
   final String? donorId;
   final String? status;
 
@@ -35,10 +41,9 @@ class _OrderDonorFieldState extends State<OrderDonorField> {
             productName: widget.productName,
             estimatedPrice: widget.estimatedPrice,
             receiverId: widget.receiverId,
-            //mapear dados do recebedor no model
-            //nome do recebedor
-            //telefone do recebedor
-            //endereço do recebedor
+            receiverName: widget.receiverName,
+            receiverPhone: widget.receiverPhone,
+            receiverAddress: widget.receiverAddress,
             donorId: widget.donorId,
             status: widget.status,
           ),

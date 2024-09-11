@@ -8,6 +8,9 @@ class OrderDonorStatusDetailScreen extends StatefulWidget {
     this.productName,
     this.estimatedPrice,
     this.receiverId,
+    this.receiverName,
+    this.receiverPhone,
+    this.receiverAddress,
     this.donorId,
     this.status,
   }) : super(key: key);
@@ -16,6 +19,9 @@ class OrderDonorStatusDetailScreen extends StatefulWidget {
   final String? productName;
   final String? estimatedPrice;
   final String? receiverId;
+  final String? receiverName;
+  final String? receiverPhone;
+  final String? receiverAddress;
   final String? donorId;
   final String? status;
 
@@ -37,8 +43,9 @@ class _OrderDonorStatusDetailScreenState
     String productName = widget.productName!;
     String estimatedPrice = widget.estimatedPrice!;
     String statusOrder = widget.status!;
-    //String receiverId = widget.receiverId!;
-    //mostrar nome, telefone e endereço do recebedor
+    String receiverName = widget.receiverName!;
+    String receiverPhone = widget.receiverPhone!;
+    String receiverAddress = widget.receiverAddress!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -83,6 +90,30 @@ class _OrderDonorStatusDetailScreenState
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Preço estimado: R\$ $estimatedPrice',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Nome do Recebedor: $receiverName',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Telefone do Recebedor: $receiverPhone',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Endereço do Recebedor: $receiverAddress',
                       style: const TextStyle(fontSize: 20),
                     ),
                   ),

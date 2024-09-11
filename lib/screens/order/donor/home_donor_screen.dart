@@ -68,7 +68,7 @@ class _HomeDonorScreenState extends State<HomeDonorScreen> {
             page: DonateOrderScreen(donorId: donorId),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.list_alt),
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
@@ -114,6 +114,9 @@ class _HomeDonorScreenState extends State<HomeDonorScreen> {
                         productName: data.productName,
                         estimatedPrice: '${data.estimatedPrice}',
                         receiverId: '${data.receiver!.id}',
+                        receiverName: data.receiver!.receiverName,
+                        receiverPhone: data.receiver!.receiverPhone,
+                        receiverAddress: data.receiver!.receiverAddress,
                         donorId: '${data.donor!.id}',
                         status: data.status,
                       );

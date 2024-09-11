@@ -61,32 +61,56 @@ class Order {
 
 class Donor {
   int? id;
+  String? donorName;
+  String? donorPhone;
+  String? donorAddress;
 
   Donor({
     this.id,
+    this.donorName,
+    this.donorPhone,
+    this.donorAddress,
   });
 
   factory Donor.fromJson(Map<String, dynamic> json) => Donor(
         id: json["id"],
+        donorName: json["name"],
+        donorPhone: json["phone"],
+        donorAddress: json["address"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "name": donorName,
+        "phone": donorPhone,
+        "address": donorAddress,
       };
 }
 
 class Receiver {
   int? id;
+  String? receiverName;
+  String? receiverPhone;
+  String? receiverAddress;
 
   Receiver({
     this.id,
+    this.receiverName,
+    this.receiverPhone,
+    this.receiverAddress,
   });
 
   factory Receiver.fromJson(Map<String, dynamic> json) => Receiver(
         id: json["id"],
+        receiverName: json["name"],
+        receiverPhone: json["phone"],
+        receiverAddress: json["address"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "name": receiverName,
+        "phone": receiverPhone,
+        "address": receiverAddress,
       };
 }
