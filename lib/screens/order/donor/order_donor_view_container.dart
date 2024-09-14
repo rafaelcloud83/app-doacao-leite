@@ -1,3 +1,4 @@
+import 'package:doacao_leite/screens/order/donor/order_donor_confirm_donate_screen.dart';
 import 'package:doacao_leite/screens/order/donor/order_donor_status_detail.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/material.dart';
@@ -35,19 +36,38 @@ class _OrderDonorFieldState extends State<OrderDonorField> {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        PageNavigator(ctx: context).nextPage(
-          page: OrderDonorStatusDetailScreen(
-            orderId: widget.id,
-            productName: widget.productName,
-            estimatedPrice: widget.estimatedPrice,
-            receiverId: widget.receiverId,
-            receiverName: widget.receiverName,
-            receiverPhone: widget.receiverPhone,
-            receiverAddress: widget.receiverAddress,
-            donorId: widget.donorId,
-            status: widget.status,
-          ),
-        );
+        if (widget.status == 'AGUARDANDO') {
+          //ir para página de confirmar doação
+          PageNavigator(ctx: context).nextPage(
+            page: OrderDonorConfirmDonateScreen(
+              orderId: widget.id,
+              productName: widget.productName,
+              estimatedPrice: widget.estimatedPrice,
+              receiverId: widget.receiverId,
+              receiverName: widget.receiverName,
+              receiverPhone: widget.receiverPhone,
+              receiverAddress: widget.receiverAddress,
+              donorId: widget.donorId,
+              status: widget.status,
+            ),
+          );
+          return;
+        } else {
+          //mostrar detalhes da doação
+          PageNavigator(ctx: context).nextPage(
+            page: OrderDonorStatusDetailScreen(
+              orderId: widget.id,
+              productName: widget.productName,
+              estimatedPrice: widget.estimatedPrice,
+              receiverId: widget.receiverId,
+              receiverName: widget.receiverName,
+              receiverPhone: widget.receiverPhone,
+              receiverAddress: widget.receiverAddress,
+              donorId: widget.donorId,
+              status: widget.status,
+            ),
+          );
+        }
       },
       contentPadding: const EdgeInsets.all(0),
       title: Text(

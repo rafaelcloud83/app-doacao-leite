@@ -75,7 +75,6 @@ class _HomeDonorScreenState extends State<HomeDonorScreen> {
         child: FutureBuilder<OrderResponseModel>(
           future: GetDonorOrderService().getOrder(),
           builder: (context, snapshot) {
-            //debugPrint('Snapshot: $snapshot');
             if (snapshot.hasError) {
               return const Center(
                 child: Text(
@@ -117,7 +116,7 @@ class _HomeDonorScreenState extends State<HomeDonorScreen> {
                         receiverName: data.receiver!.receiverName,
                         receiverPhone: data.receiver!.receiverPhone,
                         receiverAddress: data.receiver!.receiverAddress,
-                        donorId: '${data.donor!.id}',
+                        donorId: donorId,
                         status: data.status,
                       );
                     },

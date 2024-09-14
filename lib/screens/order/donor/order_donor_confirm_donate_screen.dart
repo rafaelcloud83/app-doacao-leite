@@ -1,5 +1,5 @@
 import 'package:doacao_leite/provider/order/receiver/update_order_provider.dart';
-import 'package:doacao_leite/screens/order/receiver/home_receiver_screen.dart';
+import 'package:doacao_leite/screens/order/donor/home_donor_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:doacao_leite/utils/snack_message.dart';
@@ -7,13 +7,16 @@ import 'package:doacao_leite/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class OrderStatusDetailScreen extends StatefulWidget {
-  const OrderStatusDetailScreen({
+class OrderDonorConfirmDonateScreen extends StatefulWidget {
+  const OrderDonorConfirmDonateScreen({
     Key? key,
     this.orderId,
     this.productName,
     this.estimatedPrice,
     this.receiverId,
+    this.receiverName,
+    this.receiverPhone,
+    this.receiverAddress,
     this.donorId,
     this.status,
   }) : super(key: key);
@@ -22,15 +25,19 @@ class OrderStatusDetailScreen extends StatefulWidget {
   final String? productName;
   final String? estimatedPrice;
   final String? receiverId;
+  final String? receiverName;
+  final String? receiverPhone;
+  final String? receiverAddress;
   final String? donorId;
   final String? status;
 
   @override
-  State<OrderStatusDetailScreen> createState() =>
-      _OrderStatusDetailScreenState();
+  State<OrderDonorConfirmDonateScreen> createState() =>
+      _OrderDonorConfirmDonateScreenState();
 }
 
-class _OrderStatusDetailScreenState extends State<OrderStatusDetailScreen> {
+class _OrderDonorConfirmDonateScreenState
+    extends State<OrderDonorConfirmDonateScreen> {
   @override
   void dispose() {
     super.dispose();
@@ -43,12 +50,15 @@ class _OrderStatusDetailScreenState extends State<OrderStatusDetailScreen> {
     String estimatedPrice = widget.estimatedPrice!;
     String statusOrder = widget.status!;
     String receiverId = widget.receiverId!;
+    String receiverName = widget.receiverName!;
+    String receiverPhone = widget.receiverPhone!;
+    String receiverAddress = widget.receiverAddress!;
     String donorId = widget.donorId!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: const Text(
-          'Detalhes da Doação',
+          'Confirmar Doação',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -92,6 +102,30 @@ class _OrderStatusDetailScreenState extends State<OrderStatusDetailScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Nome do Recebedor: $receiverName',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Telefone do Recebedor: $receiverPhone',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Endereço do Recebedor: $receiverAddress',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                   Consumer<UpdateOrderProvider>(
                       builder: (context, updateOrder, child) {
                     WidgetsBinding.instance.addPostFrameCallback(
@@ -103,7 +137,7 @@ class _OrderStatusDetailScreenState extends State<OrderStatusDetailScreen> {
                               ctx: context,
                             );
                             PageNavigator(ctx: context).nextPageOnly(
-                              page: const HomeReceiverScreen(),
+                              page: const HomeDonorScreen(),
                             );
                           } else {
                             errorMessage(
@@ -118,18 +152,18 @@ class _OrderStatusDetailScreenState extends State<OrderStatusDetailScreen> {
                     return customButton(
                       status: updateOrder.status,
                       tap: () {
-                        // atualizar o status para CONCLUIDO
+                        // atualizar o status para DOADO
                         updateOrder.updateOrder(
                           orderId: int.parse(orderId),
                           receiverId: int.parse(receiverId),
                           donorId: int.parse(donorId),
                           productName: productName,
                           estimatedPrice: estimatedPrice,
-                          statusOrder: 'CONCLUIDO',
+                          statusOrder: 'DOADO',
                         );
                       },
                       context: context,
-                      text: 'Confirmo doação recebida',
+                      text: 'Fazer Doação',
                     );
                   }),
                 ],
