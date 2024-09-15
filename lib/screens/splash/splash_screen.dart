@@ -1,4 +1,5 @@
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
+import 'package:doacao_leite/screens/admin/home_admin_screen.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
 import 'package:doacao_leite/screens/order/donor/home_donor_screen.dart';
 import 'package:doacao_leite/screens/order/receiver/home_receiver_screen.dart';
@@ -59,9 +60,13 @@ class _SplashScreenState extends State<SplashScreen> {
                 PageNavigator(ctx: context).nextPageOnly(
                   page: const HomeDonorScreen(),
                 );
-              } else {
+              } else if (value == 'RECEBEDOR') {
                 PageNavigator(ctx: context).nextPageOnly(
                   page: const HomeReceiverScreen(),
+                );
+              } else if (value == 'ADMIN') {
+                PageNavigator(ctx: context).nextPageOnly(
+                  page: const HomeAdminScreen(),
                 );
               }
             });

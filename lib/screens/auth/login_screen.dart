@@ -1,5 +1,6 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
+import 'package:doacao_leite/screens/admin/home_admin_screen.dart';
 import 'package:doacao_leite/screens/auth/register_screen.dart';
 import 'package:doacao_leite/screens/order/donor/home_donor_screen.dart';
 import 'package:doacao_leite/screens/order/receiver/home_receiver_screen.dart';
@@ -101,10 +102,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                               .nextPageOnly(
                                             page: const HomeDonorScreen(),
                                           );
-                                        } else {
+                                        } else if (value == 'RECEBEDOR') {
                                           PageNavigator(ctx: context)
                                               .nextPageOnly(
                                             page: const HomeReceiverScreen(),
+                                          );
+                                        } else if (value == 'ADMIN') {
+                                          PageNavigator(ctx: context)
+                                              .nextPageOnly(
+                                            page: const HomeAdminScreen(),
                                           );
                                         }
                                       },
