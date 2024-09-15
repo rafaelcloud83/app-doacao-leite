@@ -3,6 +3,7 @@ import 'package:doacao_leite/provider/admin/get_count_all_orders_status.dart';
 import 'package:doacao_leite/provider/admin/get_count_all_users.dart';
 import 'package:doacao_leite/provider/admin/get_count_all_users_role.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
+import 'package:doacao_leite/screens/admin/admin_orders_screen.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
@@ -193,7 +194,9 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
             customButton(
               text: 'Ver Doações',
               tap: () {
-                //TODO: Implementar função para ver todas as doações
+                PageNavigator(ctx: context).nextPage(
+                  page: const AdminOrdersScreen(),
+                );
               },
               context: context,
               status: false,

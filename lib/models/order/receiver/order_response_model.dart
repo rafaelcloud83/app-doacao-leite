@@ -27,6 +27,8 @@ class Order {
   int? id;
   String? productName;
   String? estimatedPrice;
+  String? createdAt;
+  String? updatedAt;
   String? status;
   Receiver? receiver;
   Donor? donor;
@@ -35,6 +37,8 @@ class Order {
     this.id,
     this.productName,
     this.estimatedPrice,
+    this.createdAt,
+    this.updatedAt,
     this.status,
     this.receiver,
     this.donor,
@@ -44,6 +48,8 @@ class Order {
         id: json["id"],
         productName: json["productName"],
         estimatedPrice: json["estimatedPrice"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
         status: json["status"],
         receiver: Receiver.fromJson(json["receiver"]),
         donor: Donor.fromJson(json["donor"]),
@@ -53,6 +59,8 @@ class Order {
         "id": id,
         "productName": productName,
         "estimatedPrice": estimatedPrice,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
         "status": status,
         "receiver": receiver?.toJson(),
         "donor": donor?.toJson(),
