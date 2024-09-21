@@ -57,7 +57,6 @@ class User {
         address: json["address"],
         active: json["active"],
         role: json["role"],
-        //createdAt: DateTime.parse(json["createdAt"]),
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
       );
@@ -71,7 +70,6 @@ class User {
         "address": address,
         "active": active,
         "role": role,
-        //"createdAt": createdAt.toIso8601String(),
         "createdAt": createdAt,
         "updatedAt": updatedAt,
       };

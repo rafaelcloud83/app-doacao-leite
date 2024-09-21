@@ -1,7 +1,7 @@
 import 'package:doacao_leite/screens/order/receiver/order_details_screen.dart';
+import 'package:doacao_leite/screens/order/receiver/order_status_concluido.dart';
 import 'package:doacao_leite/screens/order/receiver/order_status_detail.dart';
 import 'package:doacao_leite/utils/routers.dart';
-import 'package:doacao_leite/utils/snack_message.dart';
 import 'package:flutter/material.dart';
 
 class OrderField extends StatefulWidget {
@@ -32,7 +32,6 @@ class _OrderFieldState extends State<OrderField> {
     return ListTile(
       onTap: () {
         if (widget.status == 'AGUARDANDO') {
-          //pagina para alterar a doação pelo recebedor
           PageNavigator(ctx: context).nextPage(
             page: OrderDetailsScreen(
               orderId: widget.id,
@@ -44,7 +43,6 @@ class _OrderFieldState extends State<OrderField> {
             ),
           );
         } else if (widget.status == 'DOADO') {
-          // pagina de confirmação que recebeu a doação
           PageNavigator(ctx: context).nextPage(
             page: OrderStatusDetailScreen(
               orderId: widget.id,
@@ -56,11 +54,16 @@ class _OrderFieldState extends State<OrderField> {
             ),
           );
         } else if (widget.status == 'CONCLUIDO') {
-          errorMessage(
-            message: 'A doação já foi concluída e não pode ser alterada',
-            ctx: context,
+          PageNavigator(ctx: context).nextPage(
+            page: OrderStatusConcluido(
+              orderId: widget.id,
+              productName: widget.productName,
+              estimatedPrice: widget.estimatedPrice,
+              receiverId: widget.receiverId,
+              donorId: widget.donorId,
+              status: widget.status,
+            ),
           );
-          return;
         }
       },
       contentPadding: const EdgeInsets.all(0),

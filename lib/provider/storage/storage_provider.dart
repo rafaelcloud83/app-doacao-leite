@@ -62,20 +62,6 @@ class StorageProvider extends ChangeNotifier {
     }
   }
 
-  /* Future<String> getUserName() async {
-    SharedPreferences value = await _pref;
-    if (value.containsKey('userName')) {
-      String data = value.getString('userName')!;
-      _userName = data;
-      notifyListeners();
-      return data;
-    } else {
-      _userName = '';
-      notifyListeners();
-      return '';
-    }
-  } */
-
   Future<String?> getUserName() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString('userName');

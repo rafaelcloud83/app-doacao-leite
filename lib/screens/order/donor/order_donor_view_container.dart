@@ -37,7 +37,6 @@ class _OrderDonorFieldState extends State<OrderDonorField> {
     return ListTile(
       onTap: () {
         if (widget.status == 'AGUARDANDO') {
-          //ir para página de confirmar doação
           PageNavigator(ctx: context).nextPage(
             page: OrderDonorConfirmDonateScreen(
               orderId: widget.id,
@@ -53,7 +52,6 @@ class _OrderDonorFieldState extends State<OrderDonorField> {
           );
           return;
         } else {
-          //mostrar detalhes da doação
           PageNavigator(ctx: context).nextPage(
             page: OrderDonorStatusDetailScreen(
               orderId: widget.id,

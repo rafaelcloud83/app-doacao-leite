@@ -1,4 +1,4 @@
-import 'package:doacao_leite/models/order/receiver/order_response_model.dart';
+import 'package:doacao_leite/models/order/order_response_model.dart';
 import 'package:doacao_leite/provider/order/donor/get_donor_order_service.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';

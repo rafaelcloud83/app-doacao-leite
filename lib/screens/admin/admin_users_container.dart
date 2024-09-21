@@ -42,7 +42,6 @@ class _AdminUsersFieldState extends State<AdminUsersField> {
             id: widget.id,
             name: widget.name,
             email: widget.email,
-            //password: widget.password,
             phone: widget.phone,
             address: widget.address,
             active: widget.active,
@@ -65,6 +64,7 @@ class _AdminUsersFieldState extends State<AdminUsersField> {
           ),
           Text(
             widget.role!,
+            style: const TextStyle(fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,
           ),
           const Text(

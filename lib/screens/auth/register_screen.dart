@@ -102,7 +102,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const SizedBox(height: 8),
                         TextField(
-                          //maxLines: 2,
                           controller: _addressController,
                           decoration: const InputDecoration(
                             hintText: "Endereço",
@@ -143,7 +142,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onChanged: (String? value) {
                                 setState(() {
                                   _selectedRadio = value;
-                                  //debugPrint(value);
                                 });
                               },
                             ),
@@ -156,7 +154,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onChanged: (String? value) {
                                 setState(() {
                                   _selectedRadio = value;
-                                  //debugPrint(value);
                                 });
                               },
                             ),
@@ -165,16 +162,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        //botão Cadastrar
                         Consumer<AuthenticationProvider>(
                             builder: (context, auth, child) {
                           WidgetsBinding.instance.addPostFrameCallback(
-                            //WidgetsBinding.instance!.addPostFrameCallback(
                             (_) {
-                              //verificação de mensagem do auth_provider
                               if (auth.resMessage != '') {
                                 if (auth.resMessage == 'success') {
-                                  //se for sucesso
                                   successMessage(
                                     message: 'Cadastro realizado com sucesso',
                                     ctx: context,
@@ -182,33 +175,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   PageNavigator(ctx: context)
                                       .nextPageOnly(page: const LoginScreen());
                                 } else {
-                                  //se for erro
                                   errorMessage(
                                     message: auth.resMessage,
                                     ctx: context,
                                   );
                                 }
                               }
-                              auth.clear(); //limpa mensagem de autenticação
+                              auth.clear();
                             },
                           );
                           return customButton(
                             text: "Cadastrar",
                             tap: () {
-                              //validação dos campos
                               if (_emailController.text.isEmpty ||
                                   _passwordController.text.isEmpty ||
                                   _nameController.text.isEmpty ||
                                   _phoneController.text.isEmpty ||
                                   _addressController.text.isEmpty ||
                                   _passwordConfirmController.text.isEmpty) {
-                                //campos vazios
                                 errorMessage(
                                     message: 'Todos os campos são obrigatórios',
                                     ctx: context);
                               } else if (_passwordController.text !=
                                   _passwordConfirmController.text) {
-                                //senhas diferentes
                                 errorMessage(
                                     message:
                                         'Confirmar senha está diferente da Senha',

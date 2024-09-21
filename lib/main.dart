@@ -1,6 +1,7 @@
 import 'package:doacao_leite/provider/auth/auth_provider.dart';
 import 'package:doacao_leite/provider/order/receiver/add_order_provider.dart';
 import 'package:doacao_leite/provider/order/receiver/update_order_provider.dart';
+import 'package:doacao_leite/provider/order/update_user_provider.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/splash/splash_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => StorageProvider()),
         ChangeNotifierProvider(create: (_) => AddOrderProvider()),
         ChangeNotifierProvider(create: (_) => UpdateOrderProvider()),
+        ChangeNotifierProvider(create: (_) => UpdateUserProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

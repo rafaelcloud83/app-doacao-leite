@@ -131,7 +131,6 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     return customButton(
                       status: updateOrder.status,
                       tap: () {
-                        // atualizar o pedido mas manter status AGUARDANDO
                         if (_productName.text.isEmpty ||
                             _estimatedPrice.text.isEmpty) {
                           errorMessage(

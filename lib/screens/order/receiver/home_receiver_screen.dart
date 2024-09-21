@@ -1,4 +1,4 @@
-import 'package:doacao_leite/models/order/receiver/order_response_model.dart';
+import 'package:doacao_leite/models/order/order_response_model.dart';
 import 'package:doacao_leite/provider/order/receiver/get_order_service.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
@@ -24,9 +24,10 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
   @override
   void initState() {
     super.initState();
-    _loadReceiverName();
-    _loadReceiverId();
-    //GetUserOrder().getOrder();
+    setState(() {
+      _loadReceiverName();
+      _loadReceiverId();
+    });
   }
 
   Future<void> _loadReceiverName() async {

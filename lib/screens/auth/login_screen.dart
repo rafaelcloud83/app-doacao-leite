@@ -81,15 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           const SizedBox(height: 20),
-                          //botão Entrar
                           Consumer<AuthenticationProvider>(
                               builder: (context, auth, child) {
                             WidgetsBinding.instance.addPostFrameCallback(
                               (_) {
-                                //verificação de mensagem do auth_provider
                                 if (auth.resMessage != '') {
                                   if (auth.resMessage == 'success') {
-                                    //se for sucesso
                                     successMessage(
                                       message: 'Login realizado com sucesso',
                                       ctx: context,
@@ -116,20 +113,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                       },
                                     );
                                   } else {
-                                    //se for erro
                                     errorMessage(
                                       message: auth.resMessage,
                                       ctx: context,
                                     );
                                   }
                                 }
-                                auth.clear(); //limpa mensagem de autenticação
+                                auth.clear();
                               },
                             );
                             return customButton(
                               text: "Entrar",
                               tap: () {
-                                //validação dos campos
                                 if (_emailController.text.isEmpty ||
                                     _passwordController.text.isEmpty) {
                                   errorMessage(
@@ -149,7 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           }),
                           const SizedBox(height: 8),
-                          //botão para cadastrar
                           TextButton(
                             onPressed: () {
                               PageNavigator(ctx: context).nextPage(

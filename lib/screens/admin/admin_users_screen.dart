@@ -67,7 +67,6 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                         id: '${data.id}',
                         name: data.name,
                         email: data.email,
-                        //password: data.password,
                         phone: data.phone,
                         address: data.address,
                         active: data.active,

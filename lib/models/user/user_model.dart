@@ -8,6 +8,7 @@ class UserModel {
   String? email;
   String? password;
   String? role;
+  String? active;
   UserModel({
     this.id,
     this.name,
@@ -16,6 +17,7 @@ class UserModel {
     this.email,
     this.password,
     this.role,
+    this.active,
   });
 
   Map<String, dynamic> toMap() {
@@ -27,6 +29,7 @@ class UserModel {
       'email': email,
       'password': password,
       'role': role,
+      'active': active,
     };
   }
 
@@ -39,6 +42,7 @@ class UserModel {
       email: map['email'] != null ? map['email'] as String : null,
       password: map['password'] != null ? map['password'] as String : null,
       role: map['role'] != null ? map['role'] as String : null,
+      active: map['active'] != null ? map['active'] as String : null,
     );
   }
 

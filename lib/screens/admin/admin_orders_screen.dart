@@ -1,4 +1,4 @@
-import 'package:doacao_leite/models/order/receiver/order_response_model.dart';
+import 'package:doacao_leite/models/order/order_response_model.dart';
 import 'package:doacao_leite/provider/admin/get_all_orders.dart';
 import 'package:doacao_leite/screens/admin/admin_orders_container.dart';
 import 'package:doacao_leite/utils/colors.dart';

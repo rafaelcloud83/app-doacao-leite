@@ -9,7 +9,6 @@ class AdminUsersDetailScreen extends StatefulWidget {
     this.id,
     this.name,
     this.email,
-    //this.password,
     this.phone,
     this.address,
     this.active,
@@ -21,7 +20,6 @@ class AdminUsersDetailScreen extends StatefulWidget {
   final String? id;
   final String? name;
   final String? email;
-  //final String? password;
   final String? phone;
   final String? address;
   final bool? active;
@@ -47,7 +45,6 @@ class _AdminUsersDetailScreenState extends State<AdminUsersDetailScreen> {
     String id = widget.id!;
     String name = widget.name!;
     String email = widget.email!;
-    //String password = widget.password!;
     String phone = widget.phone!;
     String address = widget.address!;
     bool active = widget.active!;

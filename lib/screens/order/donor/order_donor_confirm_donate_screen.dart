@@ -152,7 +152,6 @@ class _OrderDonorConfirmDonateScreenState
                     return customButton(
                       status: updateOrder.status,
                       tap: () {
-                        // atualizar o status para DOADO
                         updateOrder.updateOrder(
                           orderId: int.parse(orderId),
                           receiverId: int.parse(receiverId),

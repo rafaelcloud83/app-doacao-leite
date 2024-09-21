@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:doacao_leite/models/user/user_response_model.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/utils/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class GetUserService {
@@ -37,7 +36,6 @@ class GetUserService {
         return UserResponseModel();
       }
     } catch (e) {
-      debugPrint('Erro catch: $e');
       return Future.error(e.toString());
     }
   }
