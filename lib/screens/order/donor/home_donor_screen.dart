@@ -4,6 +4,7 @@ import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
 import 'package:doacao_leite/screens/order/donor/donate_order_screen.dart';
 import 'package:doacao_leite/screens/order/donor/order_donor_view_container.dart';
+import 'package:doacao_leite/screens/order/user_detail_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,14 @@ class _HomeDonorScreenState extends State<HomeDonorScreen> {
           ),
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              PageNavigator(ctx: context).nextPage(
+                page: const UserDetailScreen(),
+              );
+            },
+            icon: const Icon(Icons.person),
+          ),
           IconButton(
             onPressed: () {
               StorageProvider().logout();

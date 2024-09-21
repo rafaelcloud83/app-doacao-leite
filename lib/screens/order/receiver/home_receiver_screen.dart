@@ -4,6 +4,7 @@ import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
 import 'package:doacao_leite/screens/order/receiver/add_order_screen.dart';
 import 'package:doacao_leite/screens/order/receiver/order_view_container.dart';
+import 'package:doacao_leite/screens/order/user_detail_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +56,14 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
         actions: [
           IconButton(
             onPressed: () {
+              PageNavigator(ctx: context).nextPage(
+                page: const UserDetailScreen(),
+              );
+            },
+            icon: const Icon(Icons.person),
+          ),
+          IconButton(
+            onPressed: () {
               StorageProvider().logout();
               PageNavigator(ctx: context).nextPageOnly(
                 page: const LoginScreen(),
@@ -77,7 +86,6 @@ class _HomeReceiverScreenState extends State<HomeReceiverScreen> {
         child: FutureBuilder<OrderResponseModel>(
           future: GetUserOrder().getOrder(),
           builder: (context, snapshot) {
-            //debugPrint('Snapshot: $snapshot');
             if (snapshot.hasError) {
               return const Center(
                 child: Text(
