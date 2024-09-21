@@ -22,7 +22,7 @@ Widget customButton({
         status == false ? text! : 'Aguarde...',
         style: TextStyle(
           color: black,
-          fontSize: 18,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
       ),

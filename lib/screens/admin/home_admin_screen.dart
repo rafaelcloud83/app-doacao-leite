@@ -4,6 +4,7 @@ import 'package:doacao_leite/provider/admin/get_count_all_users.dart';
 import 'package:doacao_leite/provider/admin/get_count_all_users_role.dart';
 import 'package:doacao_leite/provider/storage/storage_provider.dart';
 import 'package:doacao_leite/screens/admin/admin_orders_screen.dart';
+import 'package:doacao_leite/screens/admin/admin_users_screen.dart';
 import 'package:doacao_leite/screens/auth/login_screen.dart';
 import 'package:doacao_leite/utils/colors.dart';
 import 'package:doacao_leite/utils/routers.dart';
@@ -114,7 +115,7 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
             Text(
               'Total de usuários: $countUsers',
               style: const TextStyle(
-                fontSize: 26,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -122,7 +123,7 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Total de usuários RECEBEDOR: $countUsersRoleRecebedor',
+                'Total de usuários com Role RECEBEDOR: $countUsersRoleRecebedor',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -133,18 +134,18 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Total de usuários DOADOR: $countUsersRoleDoador',
+                'Total de usuários com Role DOADOR: $countUsersRoleDoador',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 16),
             Text(
               'Total de doações: $countOrders',
               style: const TextStyle(
-                fontSize: 26,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -152,7 +153,7 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Total de doações AGUARDANDO: $countOrdersStatusAguardando',
+                'Total de doações com Status AGUARDANDO: $countOrdersStatusAguardando',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -163,7 +164,7 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Total de doações DOADO: $countOrdersStatusDoado',
+                'Total de doações com Status DOADO: $countOrdersStatusDoado',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -174,23 +175,25 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Total de doações CONCLUIDO: $countOrdersStatusConcluido',
+                'Total de doações com Status CONCLUIDO: $countOrdersStatusConcluido',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 16),
             customButton(
               text: 'Ver Usuários',
               tap: () {
-                //TODO: Implementar função para ver todos os usuários
+                PageNavigator(ctx: context).nextPage(
+                  page: const AdminUsersScreen(),
+                );
               },
               context: context,
               status: false,
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 12),
             customButton(
               text: 'Ver Doações',
               tap: () {
