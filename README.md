@@ -21,6 +21,8 @@ O aplicativo tem o objetivo de fazer a conexão entre o Recebedor e o Doador de 
 * [Tecnologias e Ferramentas utilizadas](#tecnologias-e-ferramentas-utilizadas)
 * [Dependências](#dependências)
 * [Execução do projeto](#execução-do-projeto)
+    * [pelo VSCode](#pelo-vscode)
+    * [pelo CLI](#pelo-cli)
 * [Telas do aplicativo](#telas-do-aplicativo)
 * [APK do Android rodando com API na Oracle Cloud](#apk-do-android)
 
@@ -44,8 +46,22 @@ O aplicativo tem o objetivo de fazer a conexão entre o Recebedor e o Doador de 
 
 Para rodar o aplicativo é necessário o uso da API: https://github.com/rafaelcloud83/backend-doacao-leite
 
+IMPORTANTE: Lembre-se de alterar o IP que está no arquivo `constants.dart` dentro da pasta `lib/utils` para o IP local que está rodando a API.
+
+No Linux para ver o ip da sua rede execute o comando:
+
+```shell
+ip a
+```
+OU
+```shell
+hostname -I 
+```
+
 ## Execução do projeto
 [voltar ao início](#introdução)
+
+### Pelo VSCode
 
 Primeiramente clone o projeto com o comando:
 
@@ -58,6 +74,40 @@ git clone https://github.com/rafaelcloud83/app-doacao-leite.git
 - Abra o projeto no VSCode;
 - Abra o emulador Android ou conecte o celular;
 - Clique com o botão direto do mouse no arquivo `main.dart` e clique na opção `Run Without Debugging`.
+
+### Pelo CLI
+
+Primeiramente clone o projeto com o comando:
+
+- Clonar com HTTPS;
+
+```shell
+git clone https://github.com/rafaelcloud83/app-doacao-leite.git
+```
+
+- Depois de clonar o projeto, execute o comando conforme a figura abaixo para ver os emuladores disponíveis;
+
+```shell
+flutter emulators
+```
+
+<img src="https://github.com/rafaelcloud83/assets-repository/blob/main/appDoacao/flutterEmulator00.png?raw=true">
+
+- Depois de ver os emuladores disponíveis, execute o comando conforme a figura abaixo para rodar o emulador escolhido, no meu caso escolhi o Pixel2API34;
+
+```shell
+flutter emulators --launch Pixel2API34
+```
+
+<img src="https://github.com/rafaelcloud83/assets-repository/blob/main/appDoacao/flutterEmulator01.png?raw=true">
+
+- Depois de rodar o emulador, execute o comando conforme a figura abaixo para rodar o aplicativo no emulador escolhido;
+
+```shell
+flutter run
+```
+
+<img src="https://github.com/rafaelcloud83/assets-repository/blob/main/appDoacao/flutterEmulator02.png?raw=true">
 
 ## Telas do aplicativo
 [voltar ao início](#introdução)
