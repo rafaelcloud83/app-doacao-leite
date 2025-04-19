@@ -37,8 +37,8 @@ O aplicativo tem o objetivo de fazer a conexão entre o Recebedor e o Doador de 
 
 ## Tecnologias e Ferramentas utilizadas
 [voltar ao início](#introdução)
-- **Dart - 3.3.4**
-- **Flutter - 3.19.6**
+- **Dart - 3.7.2**
+- **Flutter - 3.29.3**
 - **VSCode**
 
 ## Dependências
