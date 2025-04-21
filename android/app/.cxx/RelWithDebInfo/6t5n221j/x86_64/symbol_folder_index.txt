@@ -1,0 +1,1 @@
+/home/rafael/dev/projetos/Uninter/app/doacao/build/app/intermediates/cxx/RelWithDebInfo/6t5n221j/obj/x86_64

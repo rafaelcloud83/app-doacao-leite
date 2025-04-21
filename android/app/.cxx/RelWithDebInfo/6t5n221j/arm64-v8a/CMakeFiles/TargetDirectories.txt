@@ -1,0 +1,2 @@
+/home/rafael/dev/projetos/Uninter/app/doacao/android/app/.cxx/RelWithDebInfo/6t5n221j/arm64-v8a/CMakeFiles/edit_cache.dir
+/home/rafael/dev/projetos/Uninter/app/doacao/android/app/.cxx/RelWithDebInfo/6t5n221j/arm64-v8a/CMakeFiles/rebuild_cache.dir
