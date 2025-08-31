@@ -1,5 +1,5 @@
 class AppUrl {
   //ip local da maquina servidor API
   //static String baseURL = 'http://192.168.0.235:8080';
-  static String baseURL = 'http://dev.rcs.ip-ddns.com:8080';
+  static String baseURL = 'http://apidoaleite.rafaelciriaco.com.br:8080';
 }
